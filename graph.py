@@ -28,6 +28,8 @@ chart = alt.Chart(df_melted).mark_line(point=True).encode(
     tooltip=['Hero', 'Date:T', 'LL Points:Q']
 ).interactive()
 
+st.write("Disclamer: These historical data were sourced from backups on the Wayback Machine for this page: https://fabtcg.com/resources/rules-and-policy-center/living-legend/. There is no guarantee that the data represented in this graph are 100% complete.")
+
 # Graph display
 st.altair_chart(chart, use_container_width=True)
 
