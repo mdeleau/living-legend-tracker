@@ -17,13 +17,13 @@ options = st.multiselect(
 
 df_restricted = df[df['Hero'].isin(options)]
 
-df_melted = df_restricted.melt(id_vars=['Hero'], var_name='Date', value_name='Score')
+df_melted = df_restricted.melt(id_vars=['Hero'], var_name='Date', value_name='LL Points')
 df_melted['Date'] = pd.to_datetime(df_melted['Date'], format='%Y-%m-%d')
 
 # Graph creation
 chart = alt.Chart(df_melted).mark_line(point=True).encode(
     x='Date:T',
-    y='Score:Q',
+    y='LL Points:Q',
     color='Hero:N',
     tooltip=['Hero', 'Date:T', 'LL Points:Q']
 ).interactive()
