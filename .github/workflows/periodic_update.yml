@@ -20,7 +20,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r ci/requirements.txt
       - name: Run update
-        run: export NEW_DATE=$(python ci/update_ll_points.py)
+        run: |
+          set -e
+          export NEW_DATE=$(python ci/update_ll_points.py) || { echo "Python script failed"; exit 1; }
+          echo "NEW_DATE=$NEW_DATE"
       - if: ${{ env.NEW_DATE != '' }}
         name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
