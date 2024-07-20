@@ -3,15 +3,15 @@ import pandas as pd
 import altair as alt
 
 
-df = pd.read_csv("data/adult_ll_history.csv", parse_dates=True)
+df = pd.read_csv('data/adult_ll_history.csv', parse_dates=True)
 
 # Initialize Streamlit
-st.set_page_config(layout = "wide")
+st.set_page_config(layout = 'wide')
 st.title('Classic Constructed Living Legend Points History')
 
 # Offer choice of heroes to lighten the graph view
 options = st.multiselect(
-    "Choose heroes to display",
+    'Choose heroes to display',
     df['Hero'],
     df['Hero'])
 
@@ -36,7 +36,7 @@ horizontal_rule = alt.Chart(pd.DataFrame({'LL Points': [1000]})).mark_rule(color
 
 combined_chart = chart + horizontal_rule
 
-st.write("Disclamer: These historical data were sourced from backups on the Wayback Machine for this page: https://fabtcg.com/resources/rules-and-policy-center/living-legend/. There is no guarantee that the data represented in this graph are 100% complete.")
+st.write('Disclamer: These historical data were sourced from backups on the Wayback Machine for this page: https://fabtcg.com/resources/rules-and-policy-center/living-legend/. There is no guarantee that the data represented in this graph are 100% complete.')
 
 # Graph display
 st.altair_chart(combined_chart, use_container_width=True)
