@@ -24,6 +24,7 @@ jobs:
           set -e
           export NEW_DATE=$(python ci/update_ll_points.py) || { echo "Python script failed"; exit 1; }
           echo "NEW_DATE=$NEW_DATE"
+          echo "NEW_DATE=$NEW_DATE" >> $GITHUB_ENV
       - if: ${{ env.NEW_DATE != '' }}
         name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
