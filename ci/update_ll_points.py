@@ -19,7 +19,9 @@ current_adult_ll_table.rename(columns={'Living Legend Points': pd.to_datetime(da
 current_adult_ll_table.sort_values(by=['Hero'], inplace=True)
 
 
-adult_ll_history = pd.concat([current_adult_ll_table.set_index('Hero'), adult_ll_history.set_index('Hero')], axis=1, join='outer').reset_index()
+adult_ll_history = pd.concat([current_adult_ll_table.set_index('Hero'), adult_ll_history.set_index('Hero')], axis=1, join='outer')
+adult_ll_history = adult_ll_history.loc[:, ~adult_ll_history.columns.duplicated()]
+adult_ll_history = adult_ll_history.reset_index()
 output_size = adult_ll_history.size
 
 if input_size != output_size:
